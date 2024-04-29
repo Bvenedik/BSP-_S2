@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #94A89A;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #657153;
+      border-radius: 5px;
+      background-color: #9CB380;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #e8e3e3;
+      border-radius: 3px;
+    }
+    .input-group button {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 3px;
+      background-color: #657153;
+      color: #fff;
+      cursor: pointer;
+    }
+    .input-group button:hover {
+      background-color: #3d4433;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to the website</h2>
+    <div class="input-group">
+      <label for="username">Email:</label>
+      <input type="text" id="username" placeholder="Enter your email">
+    </div>
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password">
+      <input type="checkbox" id="showPassword">
+      <label for="showPassword">Show Password</label>
+    </div>
+    
+    <div class="input-group">
+      <button onclick="login()">Log In</button>
+    </div>
+    <div class="input-group">
+      <button onclick="forgotPassword()">Forgot Password</button>
+    </div>
+    <div class="input-group">
+      <button onclick="createAccount()">Create an Account</button>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+    var passwordInput = document.getElementById("password");
+    var showPasswordCheckbox = document.getElementById("showPassword");
+
+    if (showPasswordCheckbox.checked) {
+      passwordInput.type = "text"; 
+    } else {
+      passwordInput.type = "password"; 
+    }
+  }
+    document.getElementById("showPassword").addEventListener("change", togglePassword);
+
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var userData = JSON.parse(localStorage.getItem(username));
+      if (userData && userData.password === password) {
+        localStorage.setItem("currentUser", username);
+        window.location.href = "main_page.html";
+      } else {
+        alert("Email or password is wrong!");
+
+      }
+    }
+    function forgotPassword() {
+    
+      window.location.href = "password_recovery.html";
+    }
+
+    function createAccount() {
+      window.location.href = "registration.html";
+    }
+  </script>
+</body>
+</html>

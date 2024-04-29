@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #94A89A;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #657153;
+            border-radius: 5px;
+            background-color: #9CB380;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e8e3e3;
+            border-radius: 3px;
+        }
+
+        .input-group button {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            background-color: #657153;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .input-group button:hover {
+            background-color: #3d4433;
+        }
+
+        #recommendationResults {
+            margin-top: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Drug Recommendation Form</h1>
+        <div class="input-group">
+            <label for="disease">Enter Disease:</label>
+            <input type="text" id="disease" name="disease">
+        </div>
+        <div class="input-group">
+            <label for="gender">Enter Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="age">Enter Age:</label>
+            <input type="text" id="age" name="age">
+        </div>
+        <div class="input-group">
+            <button type="button" onclick="submitRecommendation()">Recommend</button>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Recommendations:</h2>
+        <div id="recommendationResults"></div>
+    </div>
+</body>
+</html>

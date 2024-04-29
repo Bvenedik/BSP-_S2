@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #94A89A;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+      position: relative;
+    }
+    .button {
+      display: inline-block;
+      width: 300px;
+      height: 300px;
+      margin: 20px;
+      border: 2px solid #657153;
+      border-radius: 10px;
+      background-color: #809369;
+      color: #fff;
+      font-size: 24px;
+      line-height: 300px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    } 
+    
+    .button:hover {
+      background-color: #3d4433;
+    }
+    .profile-button {
+      position: absolute;
+      top: calc(10px + 1cm); /* Adjusted top position */
+      right: 10px;
+      width: 100px; /* Set the width of the profile button */
+      height: 40px; /* Set the height of the profile button */
+      line-height: 40px; /* Center text vertically */
+      font-size: 16px; /* Adjust font size */
+      border-radius: 5px; /* Add some border radius */
+      background-color: #657153;
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Welcome to our Health Prediction System</h1>
+    <p class="description">Please choose the operation you want to do.</p>
+    <div class="input-group">
+      <a href="predicting.html" class="button">Predicting the Disease</a> 
+      <a href="recommending.html" class="button">Recommending a Drug</a>
+    </div> 
+    <div class="input-group">
+      <a href="profile.html" class="profile-button">Profile</a>
+    </div>
+  </div>
+</body>
+</html>

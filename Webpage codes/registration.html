@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #94A89A;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #657153;
+      border-radius: 5px;
+      background-color: #9CB380;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #e8e3e3;
+      border-radius: 3px;
+    }
+    .input-group button {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 3px;
+      background-color: #657153;
+      color: #fff;
+      cursor: pointer;
+    }
+    .input-group button:hover {
+      background-color: #3d4433;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create an account</h2>
+    <div class="input-group">
+      <label for="newUsername">Email:</label>
+      <input type="text" id="newUsername" placeholder="Enter your email">
+    </div>
+    <div class="input-group">
+      <label for="newPassword">Password:</label>
+      <input type="password" id="newPassword" placeholder="Enter your password">
+    </div>
+    <div class="input-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" placeholder="Enter your password again">
+    </div>
+    <div class="input-group">
+      <label for="age">Age:</label>
+      <input type="number" id="age" placeholder="Enter your age">
+    </div>
+    <div class="input-group">
+      <label for="gender">Gender:</label>
+      <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <button onclick="register()">Create account</button>
+    </div>
+  </div>
+
+  <script>
+    function register() {
+      var newUsername = document.getElementById("newUsername").value;
+      var newPassword = document.getElementById("newPassword").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      var age = document.getElementById("age").value;
+      var gender = document.getElementById("gender").value;
+
+      if (newPassword !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      if (localStorage.getItem(newUsername)) {
+        alert("Username is already taken");
+        return;
+      }
+
+      localStorage.setItem(newUsername, JSON.stringify({
+        password: newPassword,
+        age: age,
+        gender: gender
+      }));
+
+      window.location.href = "welcome_page.html"; 
+    }
+  </script>
+
+</body>
+</html>
