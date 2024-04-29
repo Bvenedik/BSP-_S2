@@ -30,7 +30,7 @@ def predict():
     symptoms = data['symptoms']
     input_data = [0] * len(symptom_index)
     for symptom in symptoms:
-        symptom_key = symptom.lower().replace(" ", "_")  # Assuming your symptom_index uses lowercase with underscores
+        symptom_key = symptom.lower().replace(" ", "_") 
         if symptom_key in symptom_index:
             input_data[symptom_index[symptom_key]] = 1
 
