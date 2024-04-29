@@ -4,9 +4,9 @@ from joblib import load
 import numpy as np
 
 app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes
+CORS(app) 
 
-# Load models and symptom_index
+
 rf_model = load('random_forest_model.joblib')
 nb_model = load('naive_bayes_model.joblib')
 svm_model = load('svm_model.joblib')
@@ -23,7 +23,7 @@ def predict():
     })
     response.status_code = 400
 
-    data = request.get_json()  # This ensures you're getting JSON data
+    data = request.get_json()  
     if not data or 'symptoms' not in data:
         return response
 
