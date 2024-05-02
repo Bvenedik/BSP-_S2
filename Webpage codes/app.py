@@ -40,21 +40,20 @@ def predict_model1():
     
     symptom_index = {}
     for index, value in enumerate(symptoms):
-        symptom = " ".join([str(i).capitalize() for i in str(value).split("_")])
+        symptom = " ".join([i.capitalize() for i in str(value).split("_")])
         symptom_index[symptom] = index
 
     encoder = LabelEncoder()
-    encoder.fit(symptoms)
     data_dict = {
         "symptom_index":symptom_index,
-        "predictions_classes":encoder.classes_
+        "predictions_classes":encoder
     }
 
     input_data = [0] * len(data_dict["symptom_index"])
     for symptom in symptoms:
         index = data_dict["symptom_index"][symptom]
         input_data[index] = 1
-         
+
     print("Input data array:", input_data) 
     input_data = np.array(input_data).reshape(1,-1)
     
