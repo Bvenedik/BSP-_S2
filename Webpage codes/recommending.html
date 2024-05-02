@@ -61,27 +61,48 @@
     <div class="container">
         <h1>Drug Recommendation Form</h1>
         <div class="input-group">
-            <label for="disease">Enter Disease:</label>
-            <input type="text" id="disease" name="disease">
+            <label for="disease">Enter Disease Code (0-8):</label>
+            <input type="number" id="disease" name="disease" min="0" max="8">
         </div>
         <div class="input-group">
-            <label for="gender">Enter Gender:</label>
-            <select id="gender" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
+            <label for="gender">Enter Gender Code (0 for Female, 1 for Male):</label>
+            <input type="number" id="gender" name="gender" min="0" max="1">
         </div>
         <div class="input-group">
             <label for="age">Enter Age:</label>
-            <input type="text" id="age" name="age">
+            <input type="number" id="age" name="age">
         </div>
         <div class="input-group">
-            <button type="button" onclick="submitRecommendation()">Recommend</button>
+            <button type="button" onclick="submitValues()">Recommend</button>
         </div>
     </div>
     <div class="container">
         <h2>Recommendations:</h2>
         <div id="recommendationResults"></div>
     </div>
+
+    <script>
+        function submitValues() {
+            var disease = document.getElementById('disease').value;
+            var gender = document.getElementById('gender').value;
+            var age = document.getElementById('age').value;
+
+            
+            fetch('http://127.0.0.1:5500/predict_model2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('predictionResults').innerHTML =
+                    'Random Forest Prediction: ' + data['Random Forest Prediction'] + '<br>' +
+                    'Naive Bayes Prediction: ' + data['Naive Bayes Prediction'];
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>
