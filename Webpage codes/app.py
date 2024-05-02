@@ -20,10 +20,6 @@ rc_rf_model = load('models/rc_rf_model.joblib')
 def page1():
     return render_template('predicting.html')
 
-@app.route('/page2')
-def page2():
-    return render_template('recommending.html')
-
 @app.route('/predict_model1', methods=['POST'])
 
 def predict_model1():
@@ -70,21 +66,20 @@ def predict_model1():
     return response
 
 
+@app.route('/page2')
+def page2():
+    return render_template('recommending.html')
+
 @app.route('/predict_model2', methods=['POST'])
 
-def predict_drug(model, disease, gender, age):
-    test_data = np.array([[disease, gender, age]])
-    prediction = model.predict(test_data)
-    return prediction[0]
-
 def predict_model2():
+    print('AAAAAAAAAAAAAAAAAAAAA')
+
     data = request.json()
 
     disease = int(data['disease'])
     gender = int(data['gender'])
     age = int(data['age'])
-
-    print(disease)
     
     rf_prediction = predict_drug(rc_rf_model, disease, gender, age)
     nb_prediction = predict_drug(rc_nb_model, disease, gender, age)
@@ -96,6 +91,12 @@ def predict_model2():
     response = jsonify(predictions)
     response.status_code = 200
     return response
+
+
+def predict_drug(model, disease, gender, age):
+    test_data = np.array([[disease, gender, age]])
+    prediction = model.predict(test_data)
+    return prediction[0]
 
 @app.after_request
 def after_request(response):
