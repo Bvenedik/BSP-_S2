@@ -75,7 +75,7 @@
     <script>
         function submitSymptoms() {
             var symptoms = document.getElementById('symptoms').value;
-            fetch('http://127.0.0.1:5000/predict', {
+            fetch('http://127.0.0.1:5000/predict_model1', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
