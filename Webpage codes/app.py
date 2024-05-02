@@ -90,10 +90,13 @@ def predict_model2():
     rf_prediction = predict_drug(rc_rf_model, disease, gender, age)
     nb_prediction = predict_drug(rc_nb_model, disease, gender, age)
 
-    print("Random Forest Prediction:", rf_prediction)
-    print("Naive Bayes Prediction:", nb_prediction)
-
-
+    predictions = {
+    'Random Forest': rf_prediction,
+    'Naive Bayes': nb_prediction
+    }
+    response = jsonify(predictions)
+    response.status_code = 200
+    return response
 
 @app.after_request
 def after_request(response):
