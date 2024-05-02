@@ -98,8 +98,8 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('predictionResults').innerHTML =
-                    'Random Forest Prediction: ' + data['Random Forest Prediction'] + '<br>' +
-                    'Naive Bayes Prediction: ' + data['Naive Bayes Prediction'];
+                    'Random Forest Prediction: ' + data['Random Forest'] + '<br>' +
+                    'Naive Bayes Prediction: ' + data['Naive Bayes'];
             })
             .catch(error => console.error('Error:', error));
         }
