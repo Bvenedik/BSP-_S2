@@ -78,7 +78,7 @@
     </div>
     <div class="container">
         <h2>Recommendations:</h2>
-        <div id="predictionResults"></div>
+        <div id="recommendationResults"></div>
     </div>
 
     <script>
@@ -86,16 +86,16 @@
             var disease = document.getElementById('disease').value;
             var gender = document.getElementById('gender').value;
             var age = document.getElementById('age').value;
-            fetch('http://127.0.0.1:5500/predict_model2', {
-                method: 'POST',
+            fetch("predict_model_2", {
+                method:'POST',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
-                
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ disease: disease, gender: gender, age: age }),
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('predictionResults').innerHTML =
+                document.getElementById('recommendationResults').innerHTML =
                     'Random Forest Prediction: ' + data['Random Forest'] + '<br>' +
                     'Naive Bayes Prediction: ' + data['Naive Bayes'];
             })
