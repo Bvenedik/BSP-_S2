@@ -11,9 +11,14 @@
             padding: 20px;
         }
 
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            
+        }
+
         .container {
             max-width: 400px;
-            margin: 0 auto;
             padding: 20px;
             border: 1px solid #657153;
             border-radius: 5px;
@@ -55,30 +60,98 @@
             margin-top: 20px;
             color: #fff;
         }
+
+        .disease-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .disease-table th, .disease-table td {
+            border: 1px solid #657153;
+            padding: 8px;
+            text-align: center;
+            background-color: #9CB380;
+            color: #fff;
+        }
+
+        .disease-table th {
+            background-color: #657153;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Drug Recommendation Form</h1>
-        <div class="input-group">
-            <label for="disease">Enter Disease Code (0-8):</label>
-            <input type="number" id="disease" name="disease" min="0" max="8">
+    <div class="flex-container">
+        <div class="container">
+            <h1>Drug Recommendation Form</h1>
+            <div class="input-group">
+                <label for="disease">Enter Disease Code (0-8):</label>
+                <input type="number" id="disease" name="disease" min="0" max="8">
+            </div>
+            <div class="input-group">
+                <label for="gender">Enter Gender Code (0 for Female, 1 for Male):</label>
+                <input type="number" id="gender" name="gender" min="0" max="1">
+            </div>
+            <div class="input-group">
+                <label for="age">Enter Age:</label>
+                <input type="number" id="age" name="age">
+            </div>
+            <div class="input-group">
+                <button type="button" onclick="submitValues()">Recommend</button>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="gender">Enter Gender Code (0 for Female, 1 for Male):</label>
-            <input type="number" id="gender" name="gender" min="0" max="1">
-        </div>
-        <div class="input-group">
-            <label for="age">Enter Age:</label>
-            <input type="number" id="age" name="age">
-        </div>
-        <div class="input-group">
-            <button type="button" onclick="submitValues()">Recommend</button>
+
+        <div class="container">
+            <h2>Disease Codes</h2>
+            <table class="disease-table">
+                <tr>
+                    <th>Disease Name</th>
+                    <th>Code</th>
+                </tr>
+                <tr>
+                    <td>Acne</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Allergy</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Diabetes</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Fungal infection</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Urinary tract infection</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Malaria</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Migraine</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>Hepatitis B</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>AIDS</td>
+                    <td>8</td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="container">
-        <h2>Recommendations:</h2>
+
+    <div class="flex-container">
+        <div class="container">
+            <h2>Recommendations:</h2>
         <div id="recommendationResults"></div>
+        </div>
     </div>
 
     <script>
@@ -86,8 +159,8 @@
             var disease = document.getElementById('disease').value;
             var gender = document.getElementById('gender').value;
             var age = document.getElementById('age').value;
-            fetch("predict_model_2", {
-                method:'POST',
+            fetch('http://127.0.0.1:5000/predict_model_2', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
