@@ -12,6 +12,7 @@ CORS(app)
 rf_model = jl.load('models/random_forest_model.joblib')
 nb_model  = jl.load('models/naive_bayes_model.joblib')
 svm_model = jl.load('models/svm_model.joblib')
+symptoms = jl.load('models/symptoms_list.joblib')
 
 
 rc_nb_model = jl.load('models/rc_nb_model.joblib')
@@ -43,7 +44,6 @@ def predict_model1():
         return response
 
     input_symptoms = data['symptoms']
-    symptoms = jl.load('models/symptoms_list.joblib')
 
     symptom_index = { " ".join([i.capitalize() for i in value.split("_")]): index for index, value in enumerate(symptoms)}
 
